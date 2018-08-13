@@ -1,42 +1,3 @@
-// New game button
-var bNewGame = document.getElementById("buttonNewGame");
-
-//new game
-bNewGame.onclick = function() {
-    //isGameRunning = true;
-    bGameButtons.style.display = 'block';
-    bNewGame.style.display = 'none';
-    description.style.display = 'none';
-    playerName = window.prompt("What's your name?");
-    if (!playerName || playerName == 0) {
-      playerName = 'Player'; 
-    }
-    howManyRounds = window.prompt("Choose how many rounds or play 3 rounds.");
-    if (!howManyRounds || howManyRounds == 0){
-      howManyRounds = 3;
-    }  
-    playerScore = 0;
-    computerScore = 0;
-    roundNumber = 1;
-    endResult.innerHTML = " ";
-  };
-
-// Player choise
-var bRock = document.getElementById('buttonRock');
-var bPaper = document.getElementById('buttonPaper');
-var bScissors = document.getElementById('buttonScissors');
-
-bRock.onclick = function() {
-    playerMove('rock');
-    };
-bPaper.onclick = function() {
-    playerMove('paper');
-    };
-bScissors.onclick = function() {
-    playerMove('scissors');
-    };
-
-
 var bGameButtons = document.getElementById("gameButtons");
 var result = document.getElementById('result');
 var endResult = document.getElementById('endResult');
@@ -49,6 +10,45 @@ var roundNumber;
 var playerName; 
 var howManyRounds;
 
+// New game button
+var bNewGame = document.getElementById("buttonNewGame");
+
+bNewGame.onclick = function() {
+    //isGameRunning = true;
+    bGameButtons.style.display = 'block';
+    bNewGame.style.display = 'none';
+    description.style.display = 'none';
+    playerName = window.prompt("What's your name?");
+        if (!playerName || playerName == 0) {
+            playerName = 'Player'; 
+        }
+    howManyRounds = window.prompt("Choose how many rounds or play 3 rounds.");
+        if (!howManyRounds || howManyRounds == 0){
+            howManyRounds = 3;
+        }  
+    playerScore = computerScore = 0;
+    roundNumber = 1;
+    endResult.innerHTML = " ";
+  };
+
+// Player choise
+var bRock = document.getElementById('buttonRock');
+var bPaper = document.getElementById('buttonPaper');
+var bScissors = document.getElementById('buttonScissors');
+
+bRock.onclick = function() {
+    playerMove('rock');
+};
+bPaper.onclick = function() {
+    playerMove('paper');
+};
+bScissors.onclick = function() {
+    playerMove('scissors');
+};
+
+
+
+//Single game
 var playerMove = function(playerChoice) {
   console.log(roundNumber);
   console.log(howManyRounds);
@@ -78,7 +78,7 @@ var playerMove = function(playerChoice) {
   }
 };
 
-// funkcja losująca wybór komputera
+// Computer choise
 var computerMove = function() {
   var computerChoice = Math.floor(Math.random() * 3) + 1;
   if (computerChoice == 1) {
@@ -90,7 +90,8 @@ var computerMove = function() {
   }
   return computerChoice;
 };
-//  funkcja sprawdzająca kto wygrał
+
+// Check who win 
 var whoWin = function(playerChoice, computerChoice) {
   var isPlayerWin = false;
   if (playerChoice == computerChoice) {
@@ -111,7 +112,8 @@ var whoWin = function(playerChoice, computerChoice) {
   setWinner(playerChoice, computerChoice, isPlayerWin);
 };
 
-//napisy
+
+//Finish
 var setWinner = function(playerChoice, computerChoice, isPlayerWin) {
   var resultString = isPlayerWin ? "You win!" : "You lose!";
   output.innerHTML = resultString + " You played " + playerChoice + ", computer played " + computerChoice;
