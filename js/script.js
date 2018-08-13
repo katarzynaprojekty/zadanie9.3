@@ -28,6 +28,10 @@ var description = document.getElementById('description');
 //             description.style.display = 'none';
 // 		break;
 // 		case 'ended':
+//             description.style.display = 'block';
+//             bGameButtons.style.display = 'none';
+//             bNewGame.style.display = 'block';
+//      break;
 // 		case 'start':
 // 		default:
 //             bGameButtons.style.display = 'none';
@@ -56,7 +60,7 @@ bNewGame.onclick = function() {
     endResult.innerHTML = " ";
   };
 
-// Player choise
+// Player choice
 var bRock = document.getElementById('buttonRock');
 var bPaper = document.getElementById('buttonPaper');
 var bScissors = document.getElementById('buttonScissors');
@@ -71,12 +75,9 @@ bScissors.onclick = function() {
     playerMove('scissors');
 };
 
-
-
 //Single game
 var playerMove = function(playerChoice) {
-  console.log(roundNumber);
-  console.log(howManyRounds);
+    //setElements
   description.style.display = 'block';
   var computerChoice = computerMove();
   whoWin(playerChoice, computerChoice);
@@ -96,7 +97,8 @@ var playerMove = function(playerChoice) {
     else {
       endResult.innerHTML = "Game is over! " + player.name + " wins the game!";
     }
-    
+    //setElements
+    gameState = 'ended';
     bGameButtons.style.display = 'none';
     bNewGame.style.display = 'block';
     
