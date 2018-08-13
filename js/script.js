@@ -1,32 +1,57 @@
+// New game button
+var bNewGame = document.getElementById("buttonNewGame");
+
+    //game's state
+    var gameState = 'start';
+    var player = {
+            name: '',
+            score: 0
+        };
+    var computer = {
+            score: 0
+        };
+    var roundNumber;
+    var howManyRounds = 3;
+
+    //what should be visible
 var bGameButtons = document.getElementById("gameButtons");
 var result = document.getElementById('result');
 var endResult = document.getElementById('endResult');
 var whichRound = document.getElementById('whichRound');
 var description = document.getElementById('description');
-var playerScore;
-var computerScore;
-var roundNumber;
-//var isGameRunning = false;
-var playerName; 
-var howManyRounds;
 
-// New game button
-var bNewGame = document.getElementById("buttonNewGame");
+// function setElements() {
+// 	switch(gameState) {
+// 		case 'started':
+//             bGameButtons.style.display = 'block';
+//             bNewGame.style.display = 'none';
+//             description.style.display = 'none';
+// 		break;
+// 		case 'ended':
+// 		case 'start':
+// 		default:
+//             bGameButtons.style.display = 'none';
+//             bNewGame.style.display = 'block';
+// 	}
+// }
+// setElements();
 
 bNewGame.onclick = function() {
-    //isGameRunning = true;
+    //setElements
     bGameButtons.style.display = 'block';
     bNewGame.style.display = 'none';
     description.style.display = 'none';
-    playerName = window.prompt("What's your name?");
-        if (!playerName || playerName == 0) {
-            playerName = 'Player'; 
+
+    player.name = window.prompt("What's your name?");
+        if (!player.name || player.name == 0) {
+            player.name = 'Player'; 
         }
     howManyRounds = window.prompt("Choose how many rounds or play 3 rounds.");
         if (!howManyRounds || howManyRounds == 0){
             howManyRounds = 3;
         }  
-    playerScore = computerScore = 0;
+    player.score = computer.score = 0;
+    gameState = 'started';
     roundNumber = 1;
     endResult.innerHTML = " ";
   };
@@ -56,20 +81,20 @@ var playerMove = function(playerChoice) {
   var computerChoice = computerMove();
   whoWin(playerChoice, computerChoice);
   whichRound.innerHTML = "Round: " + roundNumber;
-  result.innerHTML = playerName + " " + playerScore + " : " + computerScore + " Computer";
+  result.innerHTML = player.name + " " + player.score + " : " + computer.score + " Computer";
   
   if (roundNumber < howManyRounds ) {    
     roundNumber += 1;
   }
   else  {
-    if (computerScore == playerScore) {
+    if (computer.score == player.score) {
       endResult.innerHTML = "Game is over! The result is a tie!"; 
     }
-    else if (computerScore > playerScore) {
+    else if (computer.score > player.score) {
       endResult.innerHTML = "Game is over! Computer wins the game!";
     }
     else {
-      endResult.innerHTML = "Game is over! " + playerName + " wins the game!";
+      endResult.innerHTML = "Game is over! " + player.name + " wins the game!";
     }
     
     bGameButtons.style.display = 'none';
@@ -105,9 +130,9 @@ var whoWin = function(playerChoice, computerChoice) {
     playerChoice == "paper" && computerChoice == "rock"
   ) {
     isPlayerWin = true;
-    playerScore += 1;
+    player.score += 1;
   } else {
-    computerScore += 1;
+    computer.score += 1;
   }
   setWinner(playerChoice, computerChoice, isPlayerWin);
 };
