@@ -1,7 +1,42 @@
+// New game button
+var bNewGame = document.getElementById("buttonNewGame");
+
+//new game
+bNewGame.onclick = function() {
+    //isGameRunning = true;
+    bGameButtons.style.display = 'block';
+    bNewGame.style.display = 'none';
+    description.style.display = 'none';
+    playerName = window.prompt("What's your name?");
+    if (!playerName || playerName == 0) {
+      playerName = 'Player'; 
+    }
+    howManyRounds = window.prompt("Choose how many rounds or play 3 rounds.");
+    if (!howManyRounds || howManyRounds == 0){
+      howManyRounds = 3;
+    }  
+    playerScore = 0;
+    computerScore = 0;
+    roundNumber = 1;
+    endResult.innerHTML = " ";
+  };
+
+// Player choise
 var bRock = document.getElementById('buttonRock');
 var bPaper = document.getElementById('buttonPaper');
 var bScissors = document.getElementById('buttonScissors');
-var bNewGame = document.getElementById("buttonNewGame");
+
+bRock.onclick = function() {
+    playerMove('rock');
+    };
+bPaper.onclick = function() {
+    playerMove('paper');
+    };
+bScissors.onclick = function() {
+    playerMove('scissors');
+    };
+
+
 var bGameButtons = document.getElementById("gameButtons");
 var result = document.getElementById('result');
 var endResult = document.getElementById('endResult');
@@ -83,31 +118,4 @@ var setWinner = function(playerChoice, computerChoice, isPlayerWin) {
 };
 
 
-bRock.onclick = function() {
-  playerMove('rock');
-};
-bPaper.onclick = function() {
-  playerMove('paper');
-};
-bScissors.onclick = function() {
-  playerMove('scissors');
-};
-//new game
-bNewGame.onclick = function() {
-  //isGameRunning = true;
-  bGameButtons.style.display = 'block';
-  bNewGame.style.display = 'none';
-  description.style.display = 'none';
-  playerName = window.prompt("What's your name?");
-  if (!playerName || playerName == 0) {
-    playerName = 'Player'; 
-  }
-  howManyRounds = window.prompt("Choose how many rounds or play 3 rounds.");
-  if (!howManyRounds || howManyRounds == 0){
-    howManyRounds = 3;
-  }  
-  playerScore = 0;
-  computerScore = 0;
-  roundNumber = 1;
-  endResult.innerHTML = " ";
-};
+
