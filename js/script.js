@@ -25,31 +25,41 @@ var elementComputerScore = document.getElementById('elementComputerScore');
 var elementPlayerChoice = document.getElementById('elementPlayerChoice');
 var elementComputerChoice = document.getElementById('elementComputerChoice');
 
-// function setElements() {
-// 	switch(gameState) {
-// 		case 'started':
-//             bGameButtons.style.display = 'block';
-//             bNewGame.style.display = 'none'; //  elementNewGame.style.display = 'none';
-//             description.style.display = 'none';
-// 		break;
-// 		case 'ended':
-//             description.style.display = 'block';
-//             bGameButtons.style.display = 'none';
-//             bNewGame.style.display = 'block'; // elementNewGame.style.display = 'block';
-//      break;
-// 		case 'start':
-// 		default:
-//             bGameButtons.style.display = 'none';
-//             bNewGame.style.display = 'block'; // elementNewGame.style.display = 'block';
-// 	}
-// }
-// setElements();
+function setElements() {
+	switch(gameState) {
+		case 'started':
+            bGameButtons.style.display = 'block';
+            elementNewGame.style.display = 'none';
+            description.style.display = 'none';
+            console.log("started");
+        break;
+        case 'playerMove':
+            description.style.display = 'block';
+            console.log("playerMove");
+        break;
+		case 'ended':
+            description.style.display = 'block';
+            bGameButtons.style.display = 'none';
+            elementNewGame.style.display = 'block';
+            console.log("end");
+        break;
+        case 'start':
+            bGameButtons.style.display = 'none';
+            elementNewGame.style.display = 'block';
+            description.style.display = 'none';
+            console.log("start");
+		default:
+            bGameButtons.style.display = 'none';
+            elementNewGame.style.display = 'block';
+            description.style.display = 'none';
+            console.log("de");
+	}
+}
+setElements();
 
 bNewGame.onclick = function() {
-    //setElements
-    bGameButtons.style.display = 'block';
-    elementNewGame.style.display = 'none';
-    description.style.display = 'none';
+    gameState = 'started';
+    setElements();
 
     player.name = window.prompt("What's your name?");
         if (!player.name || player.name == 0) {
@@ -61,7 +71,7 @@ bNewGame.onclick = function() {
             howManyRounds = 3;
         }  
     player.score = computer.score = 0;
-    gameState = 'started';
+    
     roundNumber = 1;
     endResult.innerHTML = " ";
     output.innerHTML = " ";
@@ -87,7 +97,9 @@ bScissors.onclick = function() {
 //Single game
 var playerMove = function(playerChoice) {
     //setElements
-  description.style.display = 'block';
+    gameState = 'playerMove';
+    setElements();
+
   var computerChoice = computerMove();
   whoWin(playerChoice, computerChoice);
   whichRound.innerHTML = "Round: " + roundNumber;
@@ -107,8 +119,7 @@ var playerMove = function(playerChoice) {
     }
     //setElements
     gameState = 'ended';
-    bGameButtons.style.display = 'none';
-    elementNewGame.style.display = 'block';
+    setElements();
     
   }
 };
