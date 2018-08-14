@@ -19,23 +19,24 @@ var result = document.getElementById('result');
 var endResult = document.getElementById('endResult');
 var whichRound = document.getElementById('whichRound');
 var description = document.getElementById('description');
+var elementNewGame =  document.getElementById('elementNewGame');
 
 // function setElements() {
 // 	switch(gameState) {
 // 		case 'started':
 //             bGameButtons.style.display = 'block';
-//             bNewGame.style.display = 'none';
+//             bNewGame.style.display = 'none'; //  elementNewGame.style.display = 'none';
 //             description.style.display = 'none';
 // 		break;
 // 		case 'ended':
 //             description.style.display = 'block';
 //             bGameButtons.style.display = 'none';
-//             bNewGame.style.display = 'block';
+//             bNewGame.style.display = 'block'; // elementNewGame.style.display = 'block';
 //      break;
 // 		case 'start':
 // 		default:
 //             bGameButtons.style.display = 'none';
-//             bNewGame.style.display = 'block';
+//             bNewGame.style.display = 'block'; // elementNewGame.style.display = 'block';
 // 	}
 // }
 // setElements();
@@ -43,7 +44,7 @@ var description = document.getElementById('description');
 bNewGame.onclick = function() {
     //setElements
     bGameButtons.style.display = 'block';
-    bNewGame.style.display = 'none';
+    elementNewGame.style.display = 'none';
     description.style.display = 'none';
 
     player.name = window.prompt("What's your name?");
@@ -100,7 +101,7 @@ var playerMove = function(playerChoice) {
     //setElements
     gameState = 'ended';
     bGameButtons.style.display = 'none';
-    bNewGame.style.display = 'block';
+    elementNewGame.style.display = 'block';
     
   }
 };
