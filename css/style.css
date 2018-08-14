@@ -10,3 +10,22 @@ header {
     text-transform: uppercase;
     margin-bottom: 2vh;
 }
+
+/* <!-- description-->  */
+#whichRound{
+    font-size: 1em;
+	font-weight: 500;
+    text-transform: uppercase;
+    margin: 2vh;
+}
+#output{
+    font-size: 1em;
+    color: blue;
+    margin-bottom: 2vh;
+}
+#endResult{
+    font-size: 1em;
+    color: red;
+    margin: 2vh;
+    font-weight: 500;
+}

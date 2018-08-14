@@ -10,16 +10,20 @@ var bNewGame = document.getElementById("buttonNewGame");
     var computer = {
             score: 0
         };
-    var roundNumber;
+    var roundNumber = " ";
     var howManyRounds = 3;
 
     //what should be visible
 var bGameButtons = document.getElementById("gameButtons");
-var result = document.getElementById('result');
 var endResult = document.getElementById('endResult');
 var whichRound = document.getElementById('whichRound');
 var description = document.getElementById('description');
 var elementNewGame =  document.getElementById('elementNewGame');
+var elementPlayerName = document.getElementById('elementPlayerName');
+var elementPlayerScore = document.getElementById('elementPlayerScore');
+var elementComputerScore = document.getElementById('elementComputerScore');
+var elementPlayerChoice = document.getElementById('elementPlayerChoice');
+var elementComputerChoice = document.getElementById('elementComputerChoice');
 
 // function setElements() {
 // 	switch(gameState) {
@@ -51,6 +55,7 @@ bNewGame.onclick = function() {
         if (!player.name || player.name == 0) {
             player.name = 'Player'; 
         }
+        elementPlayerName.innerHTML = player.name;
     howManyRounds = window.prompt("Choose how many rounds or play 3 rounds.");
         if (!howManyRounds || howManyRounds == 0){
             howManyRounds = 3;
@@ -59,6 +64,9 @@ bNewGame.onclick = function() {
     gameState = 'started';
     roundNumber = 1;
     endResult.innerHTML = " ";
+    output.innerHTML = " ";
+    elementPlayerChoice.innerHTML = " ";
+    elementComputerChoice.innerHTML = " ";
   };
 
 // Player choice
@@ -83,7 +91,6 @@ var playerMove = function(playerChoice) {
   var computerChoice = computerMove();
   whoWin(playerChoice, computerChoice);
   whichRound.innerHTML = "Round: " + roundNumber;
-  result.innerHTML = player.name + " " + player.score + " : " + computer.score + " Computer";
   
   if (roundNumber < howManyRounds ) {    
     roundNumber += 1;
@@ -122,8 +129,10 @@ var computerMove = function() {
 // Check who win 
 var whoWin = function(playerChoice, computerChoice) {
   var isPlayerWin = false;
+  elementPlayerChoice.innerHTML = elementPlayerChoice.innerHTML + '</br>' + playerChoice;
+  elementComputerChoice.innerHTML = elementComputerChoice.innerHTML + '</br>' + computerChoice;
   if (playerChoice == computerChoice) {
-    output.innerHTML = "The result is a tie! You played " + playerChoice + ", computer played " + computerChoice;
+    output.innerHTML = "The result is a tie!";
     return;
   }
   
@@ -134,18 +143,16 @@ var whoWin = function(playerChoice, computerChoice) {
   ) {
     isPlayerWin = true;
     player.score += 1;
+    elementPlayerScore.innerHTML = player.score;
   } else {
     computer.score += 1;
+    elementComputerScore.innerHTML = computer.score;
   }
-  setWinner(playerChoice, computerChoice, isPlayerWin);
-};
-
-
-//Finish
-var setWinner = function(playerChoice, computerChoice, isPlayerWin) {
+  //set winner
   var resultString = isPlayerWin ? "You win!" : "You lose!";
-  output.innerHTML = resultString + " You played " + playerChoice + ", computer played " + computerChoice;
+  output.innerHTML = resultString;
 };
+
 
 
 
